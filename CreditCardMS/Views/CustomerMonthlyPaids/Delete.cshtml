@@ -1,0 +1,104 @@
+﻿@model CreditCardMS.Models.CustomerMonthlyPaid
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CustomerMonthlyPaid</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConsumeMoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConsumeMoney)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidMoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidMoney)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServiceCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaidStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaidStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerMonthlyPaid1.Fine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerMonthlyPaid1.Fine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerMonthlyPaid2.Fine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerMonthlyPaid2.Fine)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

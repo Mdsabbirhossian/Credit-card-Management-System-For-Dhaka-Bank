@@ -1,0 +1,50 @@
+﻿@model CreditCardMS.Models.Reward
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reward</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RewardDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RewardDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RewardsPoint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RewardsPoint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RewardsId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

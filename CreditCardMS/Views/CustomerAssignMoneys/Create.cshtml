@@ -1,0 +1,138 @@
+﻿@model CreditCardMS.Models.CustomerAssignMoney
+
+@{
+    ViewBag.Title = "Create";
+}
+<center>
+    <h2>New Application for Money</h2>
+</center>
+
+<div class="alert-danger">
+    @ViewBag.error
+</div>
+<div class="form-horizontal">
+    <hr />
+    <form action="" method="post">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group hide">
+            <div class="col-md-10">
+                <input type="text" name="CustomerId" value="@Session["UserId"].ToString()" readonly class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-md-4">
+                Name
+            </div>
+
+            <div class="col-md-8">
+                <input type="text" value="@Session["UserName"].ToString()" readonly class="form-control" />
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="control-label col-md-4">
+                Card Number
+            </div>
+
+            <div class="col-md-8">
+                <input type="text" name="CardNo" value="@Session["CardNumber"].ToString()" readonly class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-4">
+                Card Type
+            </div>
+
+            <div class="col-md-8">
+                @Html.DropDownList("CardType", null, "Select Your Card", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CardType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-4">
+                Amount
+            </div>
+
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="control-label col-md-4">
+                Month Name
+            </div>
+
+            <div class="col-md-8">
+                @Html.DropDownList("ApplyingMonth", null, "Select Month", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ApplyingMonth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                       @Html.LabelFor(model => model.ApplyingMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                       <div class="col-md-10">
+                           @Html.DropDownList("ApplyingMonth"
+                  ,         new List<SelectListItem>
+            {
+                new SelectListItem{ Text="January",Value="1"  },
+                new SelectListItem{ Text="February", Value = "2" },
+                new SelectListItem{ Text="March", Value = "3" },
+                new SelectListItem{ Text="April", Value = "4" },
+                new SelectListItem{ Text="May", Value = "5" },
+                new SelectListItem{ Text="June", Value = "6" },
+                new SelectListItem{ Text="July", Value = "7" },
+                new SelectListItem{ Text="August", Value = "8" },
+                new SelectListItem{ Text="September", Value = "9" },
+                new SelectListItem{ Text="October", Value = "10" },
+                new SelectListItem{ Text="November", Value = "11" },
+                new SelectListItem{ Text="December", Value = "12" },
+             }, "Select Month", new { @class = "form-control dropdown-toggle" } )
+                       </div>
+                   </div>*@
+
+
+        <div class="form-group hidden">
+            <div class="control-label col-md-4">
+                Aprroved Status
+            </div>
+
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.ApplyingStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApplyingStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-md-4">
+                Message
+            </div>
+
+            <div class="col-md-8">
+                <textarea name="Message" rows="5" cols="50" class="form-control" placeholder="Enter your Message"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Create" class="btn btn-lg btn-success" style="margin-left:300px;"/>
+            </div>
+        </div>
+
+    </form>
+</div>
+              <div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

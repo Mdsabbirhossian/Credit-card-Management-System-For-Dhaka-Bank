@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CreditCardMSModelStoreContainer" CdmEntityContainer="CreditCardMSEntities">
+    <EntitySetMapping Name="CardStatus">
+      <EntityTypeMapping TypeName="CreditCardMSModel.CardStatu">
+        <MappingFragment StoreEntitySet="CardStatus">
+          <ScalarProperty Name="CardStatusId" ColumnName="CardStatusId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="CardStatus" ColumnName="CardStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CardTypes">
+      <EntityTypeMapping TypeName="CreditCardMSModel.CardType">
+        <MappingFragment StoreEntitySet="CardType">
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LimitAmount" ColumnName="LimitAmount" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="CreditCardMSModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Present_Address" ColumnName="Present_Address" />
+          <ScalarProperty Name="Parmanent_Address" ColumnName="Parmanent_Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="CustomerStatus" ColumnName="CustomerStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerAssignMoneys">
+      <EntityTypeMapping TypeName="CreditCardMSModel.CustomerAssignMoney">
+        <MappingFragment StoreEntitySet="CustomerAssignMoney">
+          <ScalarProperty Name="ApplyingId" ColumnName="ApplyingId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+          <ScalarProperty Name="CardType" ColumnName="CardType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ApplyingMonth" ColumnName="ApplyingMonth" />
+          <ScalarProperty Name="ApplyingStatus" ColumnName="ApplyingStatus" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerConsumingMoneys">
+      <EntityTypeMapping TypeName="CreditCardMSModel.CustomerConsumingMoney">
+        <MappingFragment StoreEntitySet="CustomerConsumingMoney">
+          <ScalarProperty Name="ConsumeId" ColumnName="ConsumeId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="ConsumeDate" ColumnName="ConsumeDate" />
+          <ScalarProperty Name="ConsumeMoney" ColumnName="ConsumeMoney" />
+          <ScalarProperty Name="TotalConsumeMoney" ColumnName="TotalConsumeMoney" />
+          <ScalarProperty Name="CashBackMoney" ColumnName="CashBackMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerMonthlyPaids">
+      <EntityTypeMapping TypeName="CreditCardMSModel.CustomerMonthlyPaid">
+        <MappingFragment StoreEntitySet="CustomerMonthlyPaid">
+          <ScalarProperty Name="TotalBill" ColumnName="TotalBill" />
+          <ScalarProperty Name="CashBack" ColumnName="CashBack" />
+          <ScalarProperty Name="Fine" ColumnName="Fine" />
+          <ScalarProperty Name="ApplyingMoney" ColumnName="ApplyingMoney" />
+          <ScalarProperty Name="MonthlyPaidId" ColumnName="MonthlyPaidId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="CardNo" ColumnName="CardNo" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="ConsumeMoney" ColumnName="ConsumeMoney" />
+          <ScalarProperty Name="PaidMoney" ColumnName="PaidMoney" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerPaidMoneys">
+      <EntityTypeMapping TypeName="CreditCardMSModel.CustomerPaidMoney">
+        <MappingFragment StoreEntitySet="CustomerPaidMoney">
+          <ScalarProperty Name="PaidId" ColumnName="PaidId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+          <ScalarProperty Name="PaidMoney" ColumnName="PaidMoney" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rewards">
+      <EntityTypeMapping TypeName="CreditCardMSModel.Reward">
+        <MappingFragment StoreEntitySet="Reward">
+          <ScalarProperty Name="RewardsId" ColumnName="RewardsId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="RewardDate" ColumnName="RewardDate" />
+          <ScalarProperty Name="RewardsPoint" ColumnName="RewardsPoint" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MonthTbls">
+      <EntityTypeMapping TypeName="CreditCardMSModel.MonthTbl">
+        <MappingFragment StoreEntitySet="MonthTbl">
+          <ScalarProperty Name="ShortOrder" ColumnName="ShortOrder" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

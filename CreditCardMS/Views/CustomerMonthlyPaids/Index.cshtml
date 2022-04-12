@@ -1,0 +1,129 @@
+﻿@model IEnumerable<CreditCardMS.Models.CustomerMonthlyPaid>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Paid Information</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-responsive table-bordered">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Card No
+        </th>
+        <th>
+            Month
+        </th>
+        <th>
+            Applying Money  <span class="glyphicon glyphicon-leaf"></span>
+        </th>
+        <th>
+            Witdraw Money <span class="glyphicon glyphicon-arrow-up"></span>
+        </th>
+        <th>
+            Paid Money <span class="glyphicon glyphicon-arrow-down"></span>
+        </th>
+        <th>
+            Service Charge(%) <span class="glyphicon glyphicon-bell"></span>
+        </th>
+        <th>
+            Cash Back <span class="glyphicon glyphicon-gift"></span>
+        </th>
+        <th>
+            Fine
+        </th>
+        <th>
+            Bill <span class="glyphicon glyphicon-send"></span>
+        </th>
+        <th>
+            Due <span class="glyphicon glyphicon-send"></span>
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            #
+        </th>
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <th></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthTbl.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplyingMoney)
+        </td>
+        <td style="color:red">
+            <b>  @Html.DisplayFor(modelItem => item.ConsumeMoney) </b>
+        </td>
+        <td style="color: green">
+            <b>   @Html.DisplayFor(modelItem => item.PaidMoney)  </b>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashBack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fine)
+        </td>
+        <td>
+            @{
+                var TotalBill = ((item.TotalBill) + ((item.TotalBill * item.ServiceCharge) / 100)) - item.CashBack;
+                <Strong>@TotalBill</Strong>
+            }
+
+        </td>
+        <td>
+            @{
+                var Due = (((item.TotalBill) + ((item.TotalBill * item.ServiceCharge) / 100)) - item.CashBack)-item.PaidMoney;
+                <Strong class="alert-danger">@Due</Strong>
+            }
+
+        </td>
+        <td>
+            @if (item.PaidStatus == "Running")
+            {
+                <a href="#" class="btn btn-md btn-warning">Running</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-md btn-success">Paid</a>
+            }
+
+        </td>
+        <td>
+            @Html.ActionLink("Print", "Details", new { id = item.MonthlyPaidId })
+        </td>
+
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MonthlyPaidId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MonthlyPaidId }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.MonthlyPaidId })*@
+            </td>
+        }
+    </tr>
+}
+
+</table>

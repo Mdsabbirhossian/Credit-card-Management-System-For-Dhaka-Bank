@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CreditCardMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CardStatu">
+    <Key>
+      <PropertyRef Name="CardStatusId" />
+    </Key>
+    <Property Name="CardStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="CardNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CardType" Type="Int32" Nullable="false" />
+    <Property Name="CardStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CardType1" Relationship="Self.FK_CardStatus_CardType" FromRole="CardStatus" ToRole="CardType" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CardStatus_Customer" FromRole="CardStatus" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="CardType">
+    <Key>
+      <PropertyRef Name="CardId" />
+    </Key>
+    <Property Name="CardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LimitAmount" Type="Double" Nullable="false" />
+    <Property Name="ServiceCharge" Type="Double" Nullable="false" />
+    <NavigationProperty Name="CardStatus" Relationship="Self.FK_CardStatus_CardType" FromRole="CardType" ToRole="CardStatus" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_CardType" FromRole="CardType" ToRole="Customer" />
+    <NavigationProperty Name="CustomerAssignMoneys" Relationship="Self.FK_CustomerAssignMoney_CardType" FromRole="CardType" ToRole="CustomerAssignMoney" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Present_Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Parmanent_Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CardNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="CardType" Type="Int32" />
+    <Property Name="CustomerStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CardStatus" Relationship="Self.FK_CardStatus_Customer" FromRole="Customer" ToRole="CardStatus" />
+    <NavigationProperty Name="CardType1" Relationship="Self.FK_Customer_CardType" FromRole="Customer" ToRole="CardType" />
+    <NavigationProperty Name="CustomerAssignMoneys" Relationship="Self.FK_CustomerAssignMoney_Customer" FromRole="Customer" ToRole="CustomerAssignMoney" />
+    <NavigationProperty Name="CustomerConsumingMoneys" Relationship="Self.FK_CustomerConsumingMoney_Customer" FromRole="Customer" ToRole="CustomerConsumingMoney" />
+    <NavigationProperty Name="CustomerMonthlyPaids" Relationship="Self.FK_CustomerMonthlyPaid_CustomerMonthlyPaid" FromRole="Customer" ToRole="CustomerMonthlyPaid" />
+    <NavigationProperty Name="Rewards" Relationship="Self.FK_Reward_Customer" FromRole="Customer" ToRole="Reward" />
+    <NavigationProperty Name="CustomerPaidMoneys" Relationship="CreditCardMSModel.FK_CustomerPaidMoney_Customer" FromRole="Customer" ToRole="CustomerPaidMoney" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CustomerAssignMoney">
+    <Key>
+      <PropertyRef Name="ApplyingId" />
+    </Key>
+    <Property Name="ApplyingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="CardNo" Type="Int32" Nullable="false" />
+    <Property Name="CardType" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="ApplyingMonth" Type="Int32" Nullable="false" />
+    <Property Name="ApplyingStatus" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CardType1" Relationship="Self.FK_CustomerAssignMoney_CardType" FromRole="CustomerAssignMoney" ToRole="CardType" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerAssignMoney_Customer" FromRole="CustomerAssignMoney" ToRole="Customer" />
+    <NavigationProperty Name="MonthTbl" Relationship="CreditCardMSModel.FK_Month" FromRole="CustomerAssignMoney" ToRole="MonthTbl" />
+  </EntityType>
+  <EntityType Name="CustomerConsumingMoney">
+    <Key>
+      <PropertyRef Name="ConsumeId" />
+    </Key>
+    <Property Name="ConsumeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Month" Type="Int32" Nullable="false" />
+    <Property Name="ConsumeDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ConsumeMoney" Type="Double" Nullable="false" />
+    <Property Name="TotalConsumeMoney" Type="Double" />
+    <Property Name="CashBackMoney" Type="Double" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerConsumingMoney_Customer" FromRole="CustomerConsumingMoney" ToRole="Customer" />
+    <NavigationProperty Name="MonthTbl" Relationship="CreditCardMSModel.FK_Month2" FromRole="CustomerConsumingMoney" ToRole="MonthTbl" />
+  </EntityType>
+  <EntityType Name="CustomerMonthlyPaid">
+    <Key>
+      <PropertyRef Name="MonthlyPaidId" />
+    </Key>
+    <Property Name="MonthlyPaidId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="CardNo" Type="Int32" Nullable="false" />
+    <Property Name="Month" Type="Int32" Nullable="false" />
+    <Property Name="ConsumeMoney" Type="Double" />
+    <Property Name="PaidMoney" Type="Double" />
+    <Property Name="ServiceCharge" Type="Double" />
+    <Property Name="Fine" Type="Double" />
+    <Property Name="PaidStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerMonthlyPaid_CustomerMonthlyPaid" FromRole="CustomerMonthlyPaid" ToRole="Customer" />
+    <NavigationProperty Name="MonthTbl" Relationship="CreditCardMSModel.FK_CMonth3" FromRole="CustomerMonthlyPaid" ToRole="MonthTbl" />
+    <Property Name="ApplyingMoney" Type="Double" />
+    <Property Name="CashBack" Type="Double" />
+    <Property Name="TotalBill" Type="Double" />
+  </EntityType>
+  <EntityType Name="CustomerPaidMoney">
+    <Key>
+      <PropertyRef Name="PaidId" />
+    </Key>
+    <Property Name="PaidId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="Month" Type="Int32" Nullable="false" />
+    <Property Name="PaidDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaidMoney" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="CreditCardMSModel.FK_CustomerPaidMoney_Customer" FromRole="CustomerPaidMoney" ToRole="Customer" />
+    <NavigationProperty Name="MonthTbl" Relationship="CreditCardMSModel.FK_Month4" FromRole="CustomerPaidMoney" ToRole="MonthTbl" />
+  </EntityType>
+  <EntityType Name="Reward">
+    <Key>
+      <PropertyRef Name="RewardsId" />
+    </Key>
+    <Property Name="RewardsId" Type="Int32" Nullable="false" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="RewardDate" Type="DateTime" Precision="3" />
+    <Property Name="RewardsPoint" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmount" Type="Double" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Reward_Customer" FromRole="Reward" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_CardStatus_CardType">
+    <End Role="CardType" Type="Self.CardType" Multiplicity="1" />
+    <End Role="CardStatus" Type="Self.CardStatu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardType">
+        <PropertyRef Name="CardId" />
+      </Principal>
+      <Dependent Role="CardStatus">
+        <PropertyRef Name="CardType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CardStatus_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CardStatus" Type="Self.CardStatu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CardStatus">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_CardType">
+    <End Role="CardType" Type="Self.CardType" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardType">
+        <PropertyRef Name="CardId" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="CardType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAssignMoney_CardType">
+    <End Role="CardType" Type="Self.CardType" Multiplicity="1" />
+    <End Role="CustomerAssignMoney" Type="Self.CustomerAssignMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardType">
+        <PropertyRef Name="CardId" />
+      </Principal>
+      <Dependent Role="CustomerAssignMoney">
+        <PropertyRef Name="CardType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerAssignMoney_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerAssignMoney" Type="Self.CustomerAssignMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerAssignMoney">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerConsumingMoney_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerConsumingMoney" Type="Self.CustomerConsumingMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerConsumingMoney">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerMonthlyPaid_CustomerMonthlyPaid">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerMonthlyPaid" Type="Self.CustomerMonthlyPaid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerMonthlyPaid">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reward_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Reward" Type="Self.Reward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Reward">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CreditCardMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CardStatus" EntityType="Self.CardStatu" />
+    <EntitySet Name="CardTypes" EntityType="Self.CardType" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="CustomerAssignMoneys" EntityType="Self.CustomerAssignMoney" />
+    <EntitySet Name="CustomerConsumingMoneys" EntityType="Self.CustomerConsumingMoney" />
+    <EntitySet Name="CustomerMonthlyPaids" EntityType="Self.CustomerMonthlyPaid" />
+    <EntitySet Name="CustomerPaidMoneys" EntityType="Self.CustomerPaidMoney" />
+    <EntitySet Name="Rewards" EntityType="Self.Reward" />
+    <AssociationSet Name="FK_CardStatus_CardType" Association="Self.FK_CardStatus_CardType">
+      <End Role="CardType" EntitySet="CardTypes" />
+      <End Role="CardStatus" EntitySet="CardStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CardStatus_Customer" Association="Self.FK_CardStatus_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CardStatus" EntitySet="CardStatus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_CardType" Association="Self.FK_Customer_CardType">
+      <End Role="CardType" EntitySet="CardTypes" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAssignMoney_CardType" Association="Self.FK_CustomerAssignMoney_CardType">
+      <End Role="CardType" EntitySet="CardTypes" />
+      <End Role="CustomerAssignMoney" EntitySet="CustomerAssignMoneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerAssignMoney_Customer" Association="Self.FK_CustomerAssignMoney_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerAssignMoney" EntitySet="CustomerAssignMoneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerConsumingMoney_Customer" Association="Self.FK_CustomerConsumingMoney_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerConsumingMoney" EntitySet="CustomerConsumingMoneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerMonthlyPaid_CustomerMonthlyPaid" Association="Self.FK_CustomerMonthlyPaid_CustomerMonthlyPaid">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerMonthlyPaid" EntitySet="CustomerMonthlyPaids" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reward_Customer" Association="Self.FK_Reward_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Reward" EntitySet="Rewards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerPaidMoney_Customer" Association="CreditCardMSModel.FK_CustomerPaidMoney_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="CustomerPaidMoney" EntitySet="CustomerPaidMoneys" />
+    </AssociationSet>
+    <EntitySet Name="MonthTbls" EntityType="CreditCardMSModel.MonthTbl" />
+    <AssociationSet Name="FK_Month" Association="CreditCardMSModel.FK_Month">
+      <End Role="MonthTbl" EntitySet="MonthTbls" />
+      <End Role="CustomerAssignMoney" EntitySet="CustomerAssignMoneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Month2" Association="CreditCardMSModel.FK_Month2">
+      <End Role="MonthTbl" EntitySet="MonthTbls" />
+      <End Role="CustomerConsumingMoney" EntitySet="CustomerConsumingMoneys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CMonth3" Association="CreditCardMSModel.FK_CMonth3">
+      <End Role="MonthTbl" EntitySet="MonthTbls" />
+      <End Role="CustomerMonthlyPaid" EntitySet="CustomerMonthlyPaids" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Month4" Association="CreditCardMSModel.FK_Month4">
+      <End Role="MonthTbl" EntitySet="MonthTbls" />
+      <End Role="CustomerPaidMoney" EntitySet="CustomerPaidMoneys" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_CustomerPaidMoney_Customer">
+    <End Type="CreditCardMSModel.Customer" Role="Customer" Multiplicity="1" />
+    <End Type="CreditCardMSModel.CustomerPaidMoney" Role="CustomerPaidMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="CustomerPaidMoney">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MonthTbl">
+    <Key>
+      <PropertyRef Name="MonthId" />
+    </Key>
+    <Property Name="MonthId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShortOrder" Type="Int32" />
+    <NavigationProperty Name="CustomerAssignMoneys" Relationship="CreditCardMSModel.FK_Month" FromRole="MonthTbl" ToRole="CustomerAssignMoney" />
+    <NavigationProperty Name="CustomerConsumingMoneys" Relationship="CreditCardMSModel.FK_Month2" FromRole="MonthTbl" ToRole="CustomerConsumingMoney" />
+    <NavigationProperty Name="CustomerMonthlyPaids" Relationship="CreditCardMSModel.FK_CMonth3" FromRole="MonthTbl" ToRole="CustomerMonthlyPaid" />
+    <NavigationProperty Name="CustomerPaidMoneys" Relationship="CreditCardMSModel.FK_Month4" FromRole="MonthTbl" ToRole="CustomerPaidMoney" />
+  </EntityType>
+  <Association Name="FK_Month">
+    <End Type="CreditCardMSModel.MonthTbl" Role="MonthTbl" Multiplicity="1" />
+    <End Type="CreditCardMSModel.CustomerAssignMoney" Role="CustomerAssignMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonthTbl">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="CustomerAssignMoney">
+        <PropertyRef Name="ApplyingMonth" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Month2">
+    <End Type="CreditCardMSModel.MonthTbl" Role="MonthTbl" Multiplicity="1" />
+    <End Type="CreditCardMSModel.CustomerConsumingMoney" Role="CustomerConsumingMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonthTbl">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="CustomerConsumingMoney">
+        <PropertyRef Name="Month" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CMonth3">
+    <End Type="CreditCardMSModel.MonthTbl" Role="MonthTbl" Multiplicity="1" />
+    <End Type="CreditCardMSModel.CustomerMonthlyPaid" Role="CustomerMonthlyPaid" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonthTbl">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="CustomerMonthlyPaid">
+        <PropertyRef Name="Month" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Month4">
+    <End Type="CreditCardMSModel.MonthTbl" Role="MonthTbl" Multiplicity="1" />
+    <End Type="CreditCardMSModel.CustomerPaidMoney" Role="CustomerPaidMoney" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonthTbl">
+        <PropertyRef Name="MonthId" />
+      </Principal>
+      <Dependent Role="CustomerPaidMoney">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

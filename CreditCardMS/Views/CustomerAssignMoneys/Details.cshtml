@@ -1,0 +1,74 @@
+﻿@model CreditCardMS.Models.CustomerAssignMoney
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerAssignMoney</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyingMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyingMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyingStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyingStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardType1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardType1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ApplyingId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

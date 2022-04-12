@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CreditCardMS.Models.Reward>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center><h2>Index</h2></center>
+
+<table class="table table-responsive table-bordered">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Starting Date
+        </th>
+        <th>
+            Rewards Point
+        </th>
+        <th>
+            Total Amount
+        </th>
+        @if (Session["UserType"].ToString() == "Customer")
+        {
+            <th>#</th>
+        }
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <th>#</th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RewardDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RewardsPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        @if (Session["UserType"].ToString() == "Customer")
+        {
+        <td>
+            @Html.ActionLink("Cash-Back", "CashBack", new { id = item.RewardsId }) 
+        </td>
+        }
+
+            @if (Session["UserType"].ToString() == "Admin")
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.RewardsId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.RewardsId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.RewardsId })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+

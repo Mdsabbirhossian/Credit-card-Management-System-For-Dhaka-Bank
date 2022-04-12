@@ -1,0 +1,147 @@
+﻿@model IEnumerable<CreditCardMS.Models.CustomerMonthlyPaid>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Generate Report</h2>
+<div class="row">
+    <div class="col-lg12">
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="email">Customer</label>
+                <input type="number" name="CustomerId" class="form-control" placeholder="Please enter Customer Id" id="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Month:</label>
+                @Html.DropDownList("month", new List<SelectListItem>
+      {
+                          new SelectListItem() {Text = "January", Value="1"},
+                          new SelectListItem() {Text = "February", Value="2"},
+                          new SelectListItem() {Text = "March", Value="3"},
+                          new SelectListItem() {Text = "Aril", Value="4"},
+                          new SelectListItem() {Text = "May", Value="5"},
+                          new SelectListItem() {Text = "June", Value="6"},
+                          new SelectListItem() {Text = "July", Value="7"},
+                          new SelectListItem() {Text = "August", Value="8"},
+                          new SelectListItem() {Text = "September", Value="9"},
+                          new SelectListItem() {Text = "October", Value="10"},
+                          new SelectListItem() {Text = "November", Value="11"},
+                          new SelectListItem() {Text = "December", Value="12"},
+      }, "Select Month", new { @class = "form-control dropdown-toggle" })
+            </div>
+
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-lg-12">
+
+
+        <center> <h2>Report</h2></center> 
+
+        @*<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>*@
+        <table class="table table-responsive table-bordered">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Card No
+                </th>
+                <th>
+                    Month
+                </th>
+                <th>
+                    Applying Money  <span class="glyphicon glyphicon-leaf"></span>
+                </th>
+                <th>
+                    Witdraw Money <span class="glyphicon glyphicon-arrow-up"></span>
+                </th>
+                <th>
+                    Paid Money <span class="glyphicon glyphicon-arrow-down"></span>
+                </th>
+                <th>
+                    Service Charge(%) <span class="glyphicon glyphicon-bell"></span>
+                </th>
+                <th>
+                    Cash Back <span class="glyphicon glyphicon-gift"></span>
+                </th>
+                <th>
+                    Fine
+                </th>
+                <th>
+                    Bill <span class="glyphicon glyphicon-send"></span>
+                </th>
+                <th>
+                    Status
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CardNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MonthTbl.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApplyingMoney)
+                    </td>
+                    <td style="color:red">
+                        <b>  @Html.DisplayFor(modelItem => item.ConsumeMoney) </b>
+                    </td>
+                    <td style="color: green">
+                        <b>   @Html.DisplayFor(modelItem => item.PaidMoney)  </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ServiceCharge)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CashBack)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fine)
+                    </td>
+                    <td>
+                        @{
+                            var TotalBill = ((item.TotalBill) + ((item.TotalBill * item.ServiceCharge) / 100)) - item.CashBack;
+                            <Strong>@TotalBill</Strong>
+                        }
+
+                    </td>
+                    <td>
+                        @if (item.PaidStatus == "Running")
+                        {
+                            <a href="#" class="btn btn-md btn-warning">Running</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-md btn-success">Paid</a>
+                        }
+
+                    </td>
+
+
+                </tr>
+            }
+
+        </table>
+
+
+
+    </div>
+
+
+</div>

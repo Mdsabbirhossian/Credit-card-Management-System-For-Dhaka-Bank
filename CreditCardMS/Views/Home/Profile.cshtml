@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<center>
+    <h2>User Information</h2>
+</center>
+@if (Session["UserType"].ToString() == "Customer")
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="~/Upload/Others/banking.jpg" width="100%" height="400px" />
+        </div>
+        <div class="col-lg-6">
+            <table class="table table-responsive table-bordered">
+                <tr>
+                    <th colspan="2">
+                        <center><img src="~/Upload/Others/cool-profile-pictures2-291x300.jpg" width="200" height="220" /> </center>
+                    </th>
+
+                </tr>
+
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        @Session["UserName"].ToString()
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>
+                        Card Number
+                    </th>
+                    <th>
+                        @Session["CardNumber"].ToString()
+                    </th>
+
+                </tr>
+                <tr>
+                    <th>
+                        Card Type
+                    </th>
+                    <th>
+                        @Session["CardType"].ToString()
+                    </th>
+
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="~/Upload/Others/banking.jpg" width="100%" height="400px" />
+        </div>
+        <div class="col-lg-6">
+           <h2>Admin</h2>
+        </div>
+    </div>
+}

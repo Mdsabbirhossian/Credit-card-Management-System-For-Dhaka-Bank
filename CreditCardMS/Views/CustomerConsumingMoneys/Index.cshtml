@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CreditCardMS.Models.CustomerConsumingMoney>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-responsive table-bordered">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumeDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsumeMoney)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TotalConsumeMoney)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.CashBackMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </th>*@
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <th></th>
+        }
+        </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthTbl.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumeDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConsumeMoney)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TotalConsumeMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashBackMoney)
+        </td>*@
+
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ConsumeId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ConsumeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ConsumeId })
+            </td>
+        }
+    </tr>
+}
+
+</table>

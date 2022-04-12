@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7144094e26f9494fa2c82bd047d695b9" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="CreditCardMSModel.CardStatu" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.CardType" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.Customer" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.CustomerAssignMoney" Width="1.5" PointX="8.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.CustomerConsumingMoney" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.CustomerMonthlyPaid" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.CustomerPaidMoney" Width="3.125" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CreditCardMSModel.Reward" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CardStatus_CardType" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CardStatus_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_Customer_CardType" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CustomerAssignMoney_CardType" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CustomerAssignMoney_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CustomerConsumingMoney_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CustomerMonthlyPaid_CustomerMonthlyPaid" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_Reward_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CustomerPaidMoney_Customer" />
+        <EntityTypeShape EntityType="CreditCardMSModel.MonthTbl" Width="1.5" PointX="0.75" PointY="8.5" />
+        <AssociationConnector Association="CreditCardMSModel.FK_Month" />
+        <AssociationConnector Association="CreditCardMSModel.FK_Month2" />
+        <AssociationConnector Association="CreditCardMSModel.FK_CMonth3" />
+        <AssociationConnector Association="CreditCardMSModel.FK_Month4" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

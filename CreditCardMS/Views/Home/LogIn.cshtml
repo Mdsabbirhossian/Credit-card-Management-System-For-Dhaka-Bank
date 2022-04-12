@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "LogIn";
+}
+
+
+<div class="row">
+    <div class="container">
+        <div class="col-md-6" style="height:800px">
+
+            <img  src="~/Upload/Others/online-banking-in-Ghana.jpg" width="100%" height="400" style="margin-top:100px;" />
+        </div>
+        <div class="col-md-6" style="height:800px">
+            <center>
+                <div style="margin-top:150px;">
+                    <h2 style="font-family:'Gloucester MT'">ACCOUNT LOGIN</h2>
+                    <hr />
+                    <div class="alert-danger" style=" margin-top:20px;font-size:25px">
+                        @ViewBag.error
+                    </div>
+                    <form  method="post" action="">
+                        <div class="form-group">
+                            <input type="text" name="userName" id="username" class="form-control" placeholder="User name" required />
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="password" name="Password" id="password" class="form-control" placeholder="Password" required />
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn  btn-success" style="">Login</button>
+                            <a href="#" class="btn btn-md btn-danger">Forget Password </a>
+
+                        </div>
+                    </form>
+                
+                </div>
+
+            </center>
+        </div>
+
+    </div>
+</div>
+
+
+@*<div class="col-md-6 col-md-offset-2">
+
+                <h2>ACCOUNT LOGIN</h2>
+                <hr />
+                <div class="alert-danger" style=" margin-top:20px;">
+                    @ViewBag.error
+                </div>
+                <form name="form" method="post" action="LogIn">
+                    <div class="form-group">
+                        <label for="username">User Name</label>
+                        <input type="text" name="userName" id="username" class="form-control" placeholder="User name" required />
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">User Type</label>
+                        @Html.DropDownList("Type"
+               ,         new List<SelectListItem>
+         {
+             new SelectListItem{ Text="Admin",Value="Admin"  },
+             new SelectListItem{ Text="Hall Manager", Value = "Hall" },
+             new SelectListItem{ Text="Member", Value = "Member" },
+          }, "Select User Type", new { @class = "form-control dropdown-toggle" } )
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="Password" id="password" class="form-control" placeholder="Password" required />
+
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">Login</button>
+
+                        <a href="Register" class="btn btn-md btn-warning">Become a New Member </a>
+                    </div>
+                </form>
+
+    </div>*@

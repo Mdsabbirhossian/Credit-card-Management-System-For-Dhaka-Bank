@@ -1,0 +1,50 @@
+﻿@model CreditCardMS.Models.CardStatu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CardStatu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CardType1.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CardType1.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CardStatusId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

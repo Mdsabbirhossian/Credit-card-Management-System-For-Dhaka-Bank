@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CreditCardMS.Models.CustomerAssignMoney>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<center><h2>Index</h2></center>
+<p>
+    <a href="../CustomerAssignMoneys/Create" class="btn btn-md btn-success">Apply for Money</a>
+</p>
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table table-responsive table-bordered">
+    <tr>
+        <th>
+            User Name
+        </th>
+        <th>
+            Card Number
+        </th>
+        <th>
+            Amount
+        </th>
+        <th>
+            Month
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Message
+        </th>
+        <th>
+            Card Type
+        </th>
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <th></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MonthTbl.Name)
+        </td>
+        <td>
+            @if (item.ApplyingStatus == "Approved")
+            {
+                <a href="#" class="btn btn-md btn-success">Approved</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-md btn-danger">Not Approved</a>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardType1.Name)
+        </td>
+
+        @if (Session["UserType"].ToString() == "Admin")
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ApplyingId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ApplyingId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ApplyingId })
+            </td>
+        }
+    </tr>
+    }
+
+</table>
